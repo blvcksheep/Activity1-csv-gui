@@ -28,8 +28,7 @@ class Account:
 
 class Student:
 
-    def __init__(self, sysName):
-        self.sysName = sysName
+    def __init__(self):
         self.numOfStudent = 0
         self.accounts = []
 
@@ -110,7 +109,7 @@ class Student:
     def save(self):
         with open('turno.csv', 'w', newline='') as a:
             db = csv.writer(a)
-            db.writerow([self.sysName])
+            db.writerow(['I.d number', 'Name', 'Year level', 'Course'])
             for account in self.accounts:
                 db.writerow([account.Idnum, account.name,
                              account.yearLvl, account.course])
