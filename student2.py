@@ -2,9 +2,10 @@ from student1 import Student
 import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
+import csv
 
 if __name__ == "__main__":
-    stu = Student('Student Information Database')
+    stu = Student()
     accName = NONE
     accId = NONE
     accYear = NONE
@@ -85,7 +86,6 @@ if __name__ == "__main__":
 
         Label(window3, text='Current Details', font=(
             'Helvetica', '12'), fg='blue').place(x=35, y=20)
-
         Label(window3, text="I.d Number", font=(
             'Helvetica', '12'), fg="blue").place(x=35, y=60)
         idEntry = Entry(window3, width=30,
@@ -117,7 +117,21 @@ if __name__ == "__main__":
 
     def logInWin():
         idInfo = login_accId.get()
-        if not stu.getAccount(idInfo):
+        if idInfo == "ADMIN":
+            table = Tk()
+            table.title("Student Information Database")
+            with open("turno.csv", newline="") as file:
+                reader = csv.reader(file)
+                r = 0
+                for col in reader:
+                    c = 0
+                    for row in col:
+                        label = Label(table, width=15, height=2,
+                                      text=row, relief=RIDGE)
+                        label.grid(row=r, column=c)
+                        c += 1
+                    r += 1
+        elif not stu.getAccount(idInfo):
             messagebox.showinfo(
                 "Hey jude!", "This account doesnt exist")
             login_idEntry.delete(0, END)
