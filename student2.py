@@ -21,6 +21,7 @@ if __name__ == "__main__":
     loginUser_accCourse = NONE
     window3 = NONE
     window = NONE
+    window2 = NONE
     login_idEntry = NONE
     idEdit = NONE
 
@@ -39,8 +40,8 @@ if __name__ == "__main__":
             'Helvetica', '12'), fg="blue").place(x=75, y=120)
         Label(window5, text=f"Course: {stu.getAccount(idInfo).course}", font=(
             'Helvetica', '12'), fg="blue").place(x=75, y=150)
-        Button(window5, text='Quit', padx=40,
-               pady=20, fg="blue", font=('Helvetica', '12'), command=window5.destroy).place(x=80, y=200)
+        Button(window5, text='Exit', padx=50,
+               pady=20, fg="blue", font=('Helvetica', '12'), command=window5.destroy).place(x=70, y=220)
 
     def login_Delete():
         idInfo = login_accId.get()
@@ -51,7 +52,7 @@ if __name__ == "__main__":
         else:
             return 0
         messagebox.showinfo(
-            "Hey jude!", "Quit all windows and Restart the system after deleting")
+            "Hey jude!", "Quit all windows and Open again the system after deleting")
 
     def userEdit():
         global idEdit
@@ -112,10 +113,11 @@ if __name__ == "__main__":
         courseEntry.place(x=130, y=150)
         Button(window3, text='Edit', padx=40,
                pady=20, fg="blue", font=('Helvetica', '12'), command=userEdit).place(x=50, y=250)
-        Button(window3, text='Quit', padx=50,
+        Button(window3, text='Exit', padx=50,
                pady=20, fg="blue", font=('Helvetica', '12'), command=window3.destroy).place(x=200, y=250)
 
     def logInWin():
+        global window2
         idInfo = login_accId.get()
         if idInfo == "ADMIN":
             table = Tk()
@@ -131,6 +133,7 @@ if __name__ == "__main__":
                         label.grid(row=r, column=c)
                         c += 1
                     r += 1
+            window2.destroy()
         elif not stu.getAccount(idInfo):
             messagebox.showinfo(
                 "Hey jude!", "This account doesnt exist")
@@ -147,7 +150,7 @@ if __name__ == "__main__":
                pady=20, fg="blue", font=('Helvetica', '12'), command=login_Details).place(x=110, y=140)
         Button(window2, text='Delete this account', padx=17,
                pady=20, fg="blue", font=('Helvetica', '12'), command=login_Delete).place(x=110, y=220)
-        Button(window2, text='Quit', padx=70,
+        Button(window2, text='Log out', padx=57,
                pady=20, fg="blue", font=('Helvetica', '12'), command=window2.destroy).place(x=110, y=300)
 
     def signInUser():
@@ -167,6 +170,7 @@ if __name__ == "__main__":
         nameEntry.delete(0, END)
         yearEntry.delete(0, END)
         courseEntry.delete(0, END)
+        window.destroy()
 
     def signInWin():
         global window
@@ -203,10 +207,8 @@ if __name__ == "__main__":
             'Helvetica', '12'), fg="blue").place(x=35, y=150)
         courseEntry = Entry(window, textvariable=accCourse, width=30)
         courseEntry.place(x=130, y=150)
-        Button(window, text='Submit', padx=40,
-               pady=20, fg="blue", font=('Helvetica', '12'), command=signInUser).place(x=50, y=250)
-        Button(window, text='Quit', padx=50,
-               pady=20, fg="blue", font=('Helvetica', '12'), command=window.destroy).place(x=200, y=250)
+        Button(window, text='Submit', padx=50,
+               pady=20, fg="blue", font=('Helvetica', '12'), command=signInUser).place(x=120, y=220)
 
     def mainWin():
         root = Tk()
