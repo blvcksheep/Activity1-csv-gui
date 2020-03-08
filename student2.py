@@ -133,7 +133,6 @@ if __name__ == "__main__":
                         label.grid(row=r, column=c)
                         c += 1
                     r += 1
-            window2.destroy()
         elif not stu.getAccount(idInfo):
             messagebox.showinfo(
                 "Hey jude!", "This account doesnt exist")
